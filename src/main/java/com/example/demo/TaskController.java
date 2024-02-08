@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:65241") 
+@CrossOrigin(origins = "http://localhost:52556") 
 public class TaskController {
 
     @Autowired
@@ -48,6 +48,8 @@ public class TaskController {
     public Task createTask(@RequestBody Task task) {
     	System.out.println(task.getTaskName());
     	System.out.println(task.getTaskDescription());
+    	System.out.println(task.getLatitude());
+    	System.out.println(task.getLongitude());
         return taskRepository.save(task);
     }
 }

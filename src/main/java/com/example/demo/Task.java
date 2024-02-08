@@ -39,6 +39,29 @@ public class Task {
 
     @Column(name = "task_description")
     private String taskDescription;
+    
+    @Column(name = "latitude")
+    private String latitude;
+    
+    @Column(name = "longitude")
+    private String longitude;
+    
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 
 	public String getTaskName() {
 		return taskName;
