@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:52556") 
+@CrossOrigin(origins = "http://localhost:63009") 
 public class TaskController {
 
     @Autowired
@@ -45,11 +46,26 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
-    	System.out.println(task.getTaskName());
-    	System.out.println(task.getTaskDescription());
-    	System.out.println(task.getLatitude());
-    	System.out.println(task.getLongitude());
-        return taskRepository.save(task);
+    public Task createTask(@RequestParam("file") MultipartFile file, Task task) {
+    	try {
+            System.out.println("Received File:");
+            System.out.println("File Name: " + file.getOriginalFilename());
+            System.out.println("File Size: " + file.getSize());
+
+            System.out.println("Received Task:");
+            System.out.println("Task Name: " + task.getTaskName());
+            System.out.println("Task Description: " + task.getTaskDescription());
+            System.out.println("Latitude: " + task.getLatitude());
+            System.out.println("Longitude: " + task.getLongitude());
+            
+            byte[] fileContent = file.getBytes();
+            task.setFileContent(fileContent);
+
+            return taskRepository.save(task);
+        } catch (Exception e) {
+            // Handle any exceptions
+            e.printStackTrace();
+            return null; // Or handle error response as needed
+        }
     }
 }

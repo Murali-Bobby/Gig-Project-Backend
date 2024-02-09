@@ -5,27 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-
-
-//public class Task {
-//    private String taskName;
-//    private String taskDescription;
-//	public String getTaskName() {
-//		return taskName;
-//	}
-//	public void setTaskName(String taskName) {
-//		this.taskName = taskName;
-//	}
-//	public String getTaskDescription() {
-//		return taskDescription;
-//	}
-//	public void setTaskDescription(String taskDescription) {
-//		this.taskDescription = taskDescription;
-//	}
-//}
-
-
 
 @Entity
 @Table(name = "tasks")
@@ -46,36 +27,48 @@ public class Task {
     @Column(name = "longitude")
     private String longitude;
     
+    @Lob
+    @Column(name = "file_content", columnDefinition = "BLOB")
+    private byte[] fileContent;
 
-	public String getLatitude() {
-		return latitude;
+    // Getters and setters
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+	public byte[] getFileContent() {
+		return fileContent;
 	}
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getTaskName() {
-		return taskName;
-	}
-
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
-
-	public String getTaskDescription() {
-		return taskDescription;
-	}
-
-	public void setTaskDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
-	}
+	public void setFileContent(byte[] fileContent) {
+		this.fileContent = fileContent;
+	}    
 }
