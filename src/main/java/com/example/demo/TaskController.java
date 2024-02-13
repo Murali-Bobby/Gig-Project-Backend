@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:63009") 
+@CrossOrigin(origins = "http://localhost:64946") 
 public class TaskController {
 
     @Autowired
@@ -63,9 +63,9 @@ public class TaskController {
 
             return taskRepository.save(task);
         } catch (Exception e) {
-            // Handle any exceptions
+       
             e.printStackTrace();
-            return null; // Or handle error response as needed
+            return null;
         }
     }
 }

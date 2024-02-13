@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("api/file")
-@CrossOrigin(origins = "http://localhost:61302") 
+@CrossOrigin(origins = "http://localhost:61970") 
 public class FileController {
 	
 	@PostMapping
